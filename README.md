@@ -21,8 +21,12 @@ Calorie tracking, recipe generation, weekly meal planning and nutrition advice -
 
 # Demo
 
+
+
+
+
 <div align="center">
-<video src="assets/kerak-demo.mp4" controls width="600"></video>
+https://github.com/user-attachments/assets/eaee7f52-b44e-43c4-9ca2-d3f6448b3a04
 </div>
 
 ---
