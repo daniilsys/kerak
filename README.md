@@ -26,7 +26,7 @@ Calorie tracking, recipe generation, weekly meal planning and nutrition advice -
 
 
 <div align="center">
-https://github.com/user-attachments/assets/eaee7f52-b44e-43c4-9ca2-d3f6448b3a04
+<video src="https://github.com/user-attachments/assets/eaee7f52-b44e-43c4-9ca2-d3f6448b3a04" controls width="600"></video>
 </div>
 
 ---
