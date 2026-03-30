@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  // Profil calorique
+  gender        String  // male | female | other
+  age           Int
+  height        Int     // cm
+  weight        Int     // kg
+  activityLevel String  // sedentary | light | moderate | active | very_active
+  goal          String  // lose | maintain | gain
+  dailyCalories Int
+
+  maxCalories    Int?    // kcal preference per serving
+  difficultyPref String? // easy | medium | hard (null = any)
+
+  foodLogs        FoodLog[]
+  savedRecipes    SavedRecipe[]
+  weeklyRoutines  WeeklyRoutine[]
+
+  @@map("users")
+}
+
+model Ingredient {
+  id         String  @id
+  code       String? // alim_code CIQUAL
+  name       String
+  normalized String
+  calories   Float?  // kcal / 100g
+  proteins   Float?  // g / 100g
+  carbs      Float?  // g / 100g
+  fats       Float?  // g / 100g
+  fiber      Float?  // g / 100g
+
+  @@index([normalized])
+  @@index([code])
+  @@map("ingredients")
+}
+
+model FoodLog {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  date      DateTime @db.Date
+  meal      String   // breakfast | lunch | dinner | snack
+  label        String
+  calories     Int
+  ingredientId String?  // Lien optionnel vers Ingredient CIQUAL
+  grams        Int?     // Quantité en grammes
+  createdAt    DateTime @default(now())
+
+  @@index([userId, date])
+  @@map("food_logs")
+}
+
+model SavedRecipe {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  recipe      Json
+  favorite    Boolean  @default(false)
+  completedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  @@index([userId, completedAt])
+  @@index([userId, favorite])
+  @@map("saved_recipes")
+}
+
+model WeeklyRoutine {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  weekStart DateTime @db.Date
+  plan      Json
+  target    Int
+  createdAt DateTime @default(now())
+
+  @@unique([userId, weekStart])
+  @@map("weekly_routines")
+}
+
+model DailyRecipe {
+  id        String   @id @default(cuid())
+  date      DateTime @unique @db.Date
+  recipes   Json     // RecipeResponse["recipes"]
+  createdAt DateTime @default(now())
+
+  @@map("daily_recipes")
+}

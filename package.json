@@ -1,0 +1,8 @@
+{
+  "name": "kerak",
+  "private": true,
+  "scripts": {
+    "dev:api": "pnpm --filter @kerak/api dev",
+    "dev:mobile": "pnpm --filter @kerak/mobile dev"
+  }
+}

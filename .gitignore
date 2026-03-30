@@ -1,0 +1,10 @@
+node_modules
+dist
+.expo
+.env
+*.tsbuildinfo
+.DS_Store
+*.pem
+
+# Large source data
+apps/api/data/data_ciqual.xlsx

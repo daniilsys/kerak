@@ -1,0 +1,36 @@
+{
+  "name": "@kerak/api",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "build:index": "tsx scripts/build-index.ts",
+    "import:ingredients": "tsx scripts/import-ingredients.ts",
+    "import:ciqual": "tsx scripts/import-ciqual.ts"
+  },
+  "dependencies": {
+    "@kerak/types": "workspace:*",
+    "@mistralai/mistralai": "^2.1.2",
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "node-cron": "^4.2.1",
+    "pg": "^8.20.0",
+    "prisma": "^7.6.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
